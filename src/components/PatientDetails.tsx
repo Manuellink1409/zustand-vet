@@ -8,6 +8,7 @@ type patientDetailsProps = {
 
 export default function PatientDetails({ patient }: patientDetailsProps) {
   const deletePatient = usePatientStore((state) => state.deletePatient);
+  const getPatientById = usePatientStore((state) => state.getPatientById);
 
   return (
     <div className="bg-[#292A2C] w-full rounded-lg p-8 text-gray-300 mb-4">
@@ -18,8 +19,11 @@ export default function PatientDetails({ patient }: patientDetailsProps) {
       <PatientDetailItem label="Fecha de alta" data={patient.date.toString()} />
       <PatientDetailItem label="Sintomas" data={patient.symptoms} />
 
-      <div className="flex justify-between mt-8">
-        <button className=" bg-sky-800 py-1 px-6 rounded-md transition-colors tracking-wide font-bold hover:bg-sky-700">
+      <div className="flex lg:flex-row gap-2 flex-col justify-between mt-8">
+        <button
+          onClick={() => getPatientById(patient.id)}
+          className=" bg-sky-800 py-1 px-6 rounded-md transition-colors tracking-wide font-bold hover:bg-sky-700"
+        >
           EDITAR
         </button>
         <button
